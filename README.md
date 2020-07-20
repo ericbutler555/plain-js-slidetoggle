@@ -22,5 +22,5 @@ That's it.
     <script src="slideToggle.min.js"></script>
     <script>
       const myDiv = document.querySelector('.div-to-toggle');
-      document.querySelector('.btn').addEventListener('click', () => slideToggle(myDiv, 300));
+      document.querySelector('.btn').addEventListener('click', () => slideToggle(myDiv, 1000));
     </script>

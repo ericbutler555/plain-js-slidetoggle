@@ -22,10 +22,10 @@
 		<div class="site-navigation">
 			<nav>
 				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Portfolio</a></li>
-					<li><a href="#">About Me</a></li>
-					<li><a href="#">Contact</a></li>
+					<li><a href="#">Menu</a></li>
+					<li><a href="#">Links</a></li>
+					<li><a href="#">Display</a></li>
+					<li><a href="#">Here</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -62,11 +62,13 @@
 	<footer>
 		Created by Eric Butler in 2020
 	</footer>
+
 	<script src="slideToggle.min.js"></script>
 	<script>
 		// MENU FUNCTIONALITY:
 		var hamburger = document.querySelector('.hamburger');
 		var siteNav = document.querySelector('.site-navigation');
+
 		hamburger.addEventListener('click', function(e) {
 			e.preventDefault();
 			hamburger.classList.toggle('is-active');
@@ -74,12 +76,14 @@
 		});
 
 		// ACCORDION FUNCTIONALITY:
-		var allPanels = document.querySelectorAll('.accordion .panel');
+		var allPanels = document.querySelectorAll('.accordion .panel'); // only needed if collapsing other panels when opening
+
 		document.querySelector('.accordion').addEventListener('click', function(e) {
 			if (e.target.classList.contains('tab')) {
 				var nextPanel = e.target.nextElementSibling;
 				slideToggle(nextPanel, 200);
-				// if you want other panels to close when you open one, do this:
+
+				// to make other panels collapse when you open one:
 				allPanels.forEach(function(el) {
 					if (el.style.display !== "none" && el !== nextPanel) slideUp(el, 200);
 				});

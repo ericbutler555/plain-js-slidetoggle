@@ -25,17 +25,18 @@ function _s(el, duration, isDown) {
 	if (isDown) el.style.display = "block";
 
 	var elStyles        = window.getComputedStyle(el);
-	var elMarginTop     = parseFloat(elStyles.getPropertyValue('margin-top'));
-	var elMarginBottom  = parseFloat(elStyles.getPropertyValue('margin-bottom'));
+
+	var elHeight        = parseFloat(elStyles.getPropertyValue('height'));
 	var elPaddingTop    = parseFloat(elStyles.getPropertyValue('padding-top'));
 	var elPaddingBottom = parseFloat(elStyles.getPropertyValue('padding-bottom'));
-	var elHeight        = parseFloat(elStyles.getPropertyValue('height'));
+	var elMarginTop     = parseFloat(elStyles.getPropertyValue('margin-top'));
+	var elMarginBottom  = parseFloat(elStyles.getPropertyValue('margin-bottom'));
 
-	var stepMarginTop     = elMarginTop / duration;
-	var stepMarginBottom  = elMarginBottom / duration;
-	var stepPaddingTop    = elPaddingTop / duration;
+	var stepHeight        = elHeight        / duration;
+	var stepPaddingTop    = elPaddingTop    / duration;
 	var stepPaddingBottom = elPaddingBottom / duration;
-	var stepHeight        = elHeight / duration;
+	var stepMarginTop     = elMarginTop     / duration;
+	var stepMarginBottom  = elMarginBottom  / duration;
 
 	var start;
 
@@ -46,26 +47,26 @@ function _s(el, duration, isDown) {
 		var elapsed = timestamp - start;
 
 		if (isDown) {
-			el.style.marginTop     = (stepMarginTop * elapsed) + "px";
-			el.style.marginBottom  = (stepMarginBottom * elapsed) + "px";
-			el.style.paddingTop    = (stepPaddingTop * elapsed) + "px";
+			el.style.height        = (stepHeight        * elapsed) + "px";
+			el.style.paddingTop    = (stepPaddingTop    * elapsed) + "px";
 			el.style.paddingBottom = (stepPaddingBottom * elapsed) + "px";
-			el.style.height        = (stepHeight * elapsed) + "px";
+			el.style.marginTop     = (stepMarginTop     * elapsed) + "px";
+			el.style.marginBottom  = (stepMarginBottom  * elapsed) + "px";
 		} else {
-			el.style.marginTop     = elMarginTop - (stepMarginTop * elapsed) + "px";
-			el.style.marginBottom  = elMarginBottom - (stepMarginBottom * elapsed) + "px";
-			el.style.paddingTop    = elPaddingTop - (stepPaddingTop * elapsed) + "px";
+			el.style.height        = elHeight        - (stepHeight        * elapsed) + "px";
+			el.style.paddingTop    = elPaddingTop    - (stepPaddingTop    * elapsed) + "px";
 			el.style.paddingBottom = elPaddingBottom - (stepPaddingBottom * elapsed) + "px";
-			el.style.height        = elHeight - (stepHeight * elapsed) + "px";
+			el.style.marginTop     = elMarginTop     - (stepMarginTop     * elapsed) + "px";
+			el.style.marginBottom  = elMarginBottom  - (stepMarginBottom  * elapsed) + "px";
 		}
 
 		if (elapsed >= duration) {
-			el.style.marginTop = "";
-			el.style.marginBottom = "";
-			el.style.paddingTop = "";
+			el.style.height        = "";
+			el.style.paddingTop    = "";
 			el.style.paddingBottom = "";
-			el.style.height = "";
-			el.style.overflow = "";
+			el.style.marginTop     = "";
+			el.style.marginBottom  = "";
+			el.style.overflow      = "";
 			if (!isDown) el.style.display = "none";
 		} else {
 			window.requestAnimationFrame(step);
