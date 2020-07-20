@@ -2,7 +2,7 @@
 
 Plain vanilla JavaScript version of jQuery's `slideToggle()`, `slideUp()`, and `slideDown()` functions. No dependencies!
 
-Check out the demo page: [https://ericbutler555.github.io/plain-js-slidetoggle/demo.html](https://ericbutler555.github.io/plain-js-slidetoggle/demo.html)
+Check out [the demo page](https://ericbutler555.github.io/plain-js-slidetoggle/demo.html).
 
 ## How To Use
 
@@ -13,7 +13,7 @@ Check out the demo page: [https://ericbutler555.github.io/plain-js-slidetoggle/d
     slideDown(element, duration);
 
 - element: *HTMLElement*. Required.
-- duration: *Number*. Optional. In milliseconds, default 400.
+- duration: *Number*. Optional. In milliseconds. Default 400.
 
 That's it.
 
