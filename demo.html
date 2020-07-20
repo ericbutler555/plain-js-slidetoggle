@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>slideToggle in plain JavaScript</title>
+	<link rel="stylesheet" href="demo-styles.css">
+</head>
+<body>
+	<header>
+		<svg class="site-logo" width="40" height="40">
+			<polygon points="10 0, 0 20, 20 40, 35 30, 40 10" />
+		</svg>
+		<span class="site-name">slideToggle Demo</span>
+		<button class="hamburger">
+			<svg width="32" height="32">
+				<rect id="line1" y="8" width="32" height="4" />
+				<rect id="line2" y="16" width="32" height="4" />
+				<rect id="line3" y="24" width="32" height="4" />
+			</svg>
+		</button>
+		<div class="site-navigation">
+			<nav>
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">Portfolio</a></li>
+					<li><a href="#">About Me</a></li>
+					<li><a href="#">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+	<main>
+		<h1>slideToggle Demo - no jQuery necessary!</h1>
+		<p>Plain JavaScript version of the great slideToggle() function in jQuery. Slightly simplified.</p>
+		<p>Also includes slideUp() and slideDown().</p>
+		<h2>Navigation Menu Demo</h2>
+		<p><strong>On narrow screens,</strong> click/tap the icon in the upper-right to open and close the navigation menu.</p>
+		<p><strong>On wider screens,</strong> the navigation menu displays in a static horizontal row so you won't see anything to toggle.</p>
+		<h2>Accordion Demo</h2>
+		<p><strong>Click the different tabs</strong> to open a panel with more information. The other tabs will close as you open new ones, but you can adjust your own code if you want them to stay open.</p>
+		<ul class="accordion">
+			<li>
+				<div class="tab">Accordion Tab One</div>
+				<div class="panel is-open">Description of accordion tab one</div>
+			</li>
+			<li>
+				<div class="tab">Accordion Tab Two</div>
+				<div class="panel">Some information about accordion tab two. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque cum officiis minima illo fuga rem quae rerum veritatis reprehenderit laboriosam similique eos fugiat maiores quia, dolor accusamus, pariatur qui sint?</div>
+			</li>
+			<li>
+				<div class="tab">Accordion Tab Three</div>
+				<div class="panel">
+					<img src="https://www.placecage.com/c/200/150" alt="Sample image"><br>
+					All about accordion tab number three!
+				</div>
+			</li>
+		</ul>
+		<h2>Like It?</h2>
+		<p>Head over to <a href="https://github.com/ericbutler555/plain-js-slidetoggle">the GitHub repo</a>, click the star button and download for your own personal and commercial use.</p>
+	</main>
+	<footer>
+		Created by Eric Butler in 2020
+	</footer>
+	<script src="slideToggle.min.js"></script>
+	<script>
+		// MENU FUNCTIONALITY:
+		var hamburger = document.querySelector('.hamburger');
+		var siteNav = document.querySelector('.site-navigation');
+		hamburger.addEventListener('click', function(e) {
+			e.preventDefault();
+			hamburger.classList.toggle('is-active');
+			slideToggle(siteNav);
+		});
+
+		// ACCORDION FUNCTIONALITY:
+		var allPanels = document.querySelectorAll('.accordion .panel');
+		document.querySelector('.accordion').addEventListener('click', function(e) {
+			if (e.target.classList.contains('tab')) {
+				var nextPanel = e.target.nextElementSibling;
+				slideToggle(nextPanel, 200);
+				// if you want other panels to close when you open one, do this:
+				allPanels.forEach(function(el) {
+					if (el.style.display !== "none" && el !== nextPanel) slideUp(el, 200);
+				});
+			}
+		});
+	</script>
+</body>
+</html>
