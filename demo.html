@@ -68,11 +68,12 @@
 		// MENU FUNCTIONALITY:
 		var hamburger = document.querySelector('.hamburger');
 		var siteNav = document.querySelector('.site-navigation');
+		var confirmation = () => console.info('slideToggle animation complete!');
 
 		hamburger.addEventListener('click', function(e) {
 			e.preventDefault();
 			hamburger.classList.toggle('is-active');
-			slideToggle(siteNav);
+			slideToggle(siteNav, 1000, confirmation);
 		});
 
 		// ACCORDION FUNCTIONALITY:

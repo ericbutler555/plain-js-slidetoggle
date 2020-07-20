@@ -6,14 +6,15 @@ Check out [the demo page](https://ericbutler555.github.io/plain-js-slidetoggle/d
 
 ## How To Use
 
-    slideToggle(element, duration);
+    slideToggle(element, duration, callback);
 
-    slideUp(element, duration);
+    slideUp(element, duration, callback);
 
-    slideDown(element, duration);
+    slideDown(element, duration, callback);
 
 - element: *HTMLElement*. Required.
 - duration: *Number*. Optional. In milliseconds. Default 400.
+- callback: *Function*. Optional. Called once animation completes.
 
 That's it.
 
@@ -22,5 +23,6 @@ That's it.
     <script src="slideToggle.min.js"></script>
     <script>
       const myDiv = document.querySelector('.div-to-toggle');
-      document.querySelector('.btn').addEventListener('click', () => slideToggle(myDiv, 1000));
+      const myCallback = () => console.log('Slide finished!');
+      document.querySelector('.btn').addEventListener('click', () => slideToggle(myDiv, 1000, myCallback));
     </script>
