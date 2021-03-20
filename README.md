@@ -20,9 +20,18 @@ That's it.
 
 ## Example Usage
 
+    <button class="btn">Click me</button>
+    <div class="div-to-toggle">
+      ...content...
+    </div>
+
     <script src="slideToggle.min.js"></script>
     <script>
-      const myDiv = document.querySelector('.div-to-toggle');
-      const myCallback = () => console.log('Slide finished!');
-      document.querySelector('.btn').addEventListener('click', () => slideToggle(myDiv, 1000, myCallback));
+      // when you click the button, slide the div up and down:
+      const divToToggle = document.querySelector('.div-to-toggle');
+      document.querySelector('.btn').addEventListener('click', () => {
+        slideToggle(divToToggle, 500, () => {
+          console.log('This is the callback, the slide has finished!');
+        });
+      });
     </script>
