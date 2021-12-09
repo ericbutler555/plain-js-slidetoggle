@@ -24,27 +24,27 @@ function _s(el, duration, callback, isDown) {
   el.style.overflow = "hidden";
   if (isDown) el.style.display = "block";
 
-  var elStyles        = window.getComputedStyle(el);
+  const elStyles        = window.getComputedStyle(el);
 
-  var elHeight        = parseFloat(elStyles.getPropertyValue('height'));
-  var elPaddingTop    = parseFloat(elStyles.getPropertyValue('padding-top'));
-  var elPaddingBottom = parseFloat(elStyles.getPropertyValue('padding-bottom'));
-  var elMarginTop     = parseFloat(elStyles.getPropertyValue('margin-top'));
-  var elMarginBottom  = parseFloat(elStyles.getPropertyValue('margin-bottom'));
+  const elHeight        = parseFloat(elStyles.getPropertyValue('height'));
+  const elPaddingTop    = parseFloat(elStyles.getPropertyValue('padding-top'));
+  const elPaddingBottom = parseFloat(elStyles.getPropertyValue('padding-bottom'));
+  const elMarginTop     = parseFloat(elStyles.getPropertyValue('margin-top'));
+  const elMarginBottom  = parseFloat(elStyles.getPropertyValue('margin-bottom'));
 
-  var stepHeight        = elHeight        / duration;
-  var stepPaddingTop    = elPaddingTop    / duration;
-  var stepPaddingBottom = elPaddingBottom / duration;
-  var stepMarginTop     = elMarginTop     / duration;
-  var stepMarginBottom  = elMarginBottom  / duration;
+  const stepHeight        = elHeight        / duration;
+  const stepPaddingTop    = elPaddingTop    / duration;
+  const stepPaddingBottom = elPaddingBottom / duration;
+  const stepMarginTop     = elMarginTop     / duration;
+  const stepMarginBottom  = elMarginBottom  / duration;
 
-  var start;
+  let start;
 
   function step(timestamp) {
 
     if (start === undefined) start = timestamp;
 
-    var elapsed = timestamp - start;
+    const elapsed = timestamp - start;
 
     if (isDown) {
       el.style.height        = (stepHeight        * elapsed) + "px";
@@ -76,3 +76,5 @@ function _s(el, duration, callback, isDown) {
 
   window.requestAnimationFrame(step);
 }
+
+export { slideToggle, slideDown, slideUp }
