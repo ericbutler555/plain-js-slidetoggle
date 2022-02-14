@@ -1,45 +1,78 @@
-/* TL;DR: here are the styles relevant to the sliding nav menu */
-@media (max-width: 899px) {
-	.site-navigation {
-		display: none; /* hides navigation by default until it's toggled open */
-	}
-}
-@media (min-width: 900px) {
-	.site-navigation {
-		display: block !important; /* overrides any inline styles to ensure the nav always displays on wider screens */
-	}
-}
-/* end TL;DR */
-
-
 /* Header */
 header {
+	position: relative; /* for anchoring .site-navigation */
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 0 20px;
+	padding: 0 0 0 10px;
 	background: white;
 	border-bottom: 1px solid #ddd;
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
+
+/* Hamburger icon */
 .hamburger {
-	display: none; /* don't show the hamburger icon on wider screens */
+	display: block;
+	flex: 0 0 64px; /* keep this exactly 64px wide */
+	margin-left: auto; /* keep it flush right */
+	width: 64px;
+	height: 64px;
+	border-radius: 0;
+	border: 0;
+	padding: 0;
+	background: black;
+	cursor: pointer;
+	transition: all 0.2s;
+}
+.hamburger rect {
+	fill: white; /* SVGs use "fill", not "background-color" */
+	transform-origin: center center; /* for line transforms later */
+	transition: all 0.2s;
 }
 
-/* Navigation menu for wider screens */
+/* Fancy icon toggle styling */
+.hamburger:hover,
+.hamburger.is-active {
+	background: #eb4;
+	box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
+}
+.is-active #line1 {
+	transform: rotate(-135deg) translate(-1px, 5px);
+	fill: black;
+}
+.is-active #line2 {
+	transform: rotate(-135deg) translate(-1px, -3px);
+	fill: black;
+}
+.is-active #line3 {
+	transform: rotate(135deg) translate(1px, -11px);
+	fill: black;
+}
+
+/* Navigation menu */
 .site-navigation {
-	margin-left: auto; /* keep it flush right */
+	display: none; /* hides navigation by default until it's toggled open */
+	position: absolute;
+	top: 100%; /* with absolute position, anchor to bottom of header */
+	left: 0;
+	right: 0;
+	background-color: white;
+	border-top: 1px solid #ddd;
+	border-bottom: 1px solid #ddd;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 .site-navigation ul {
-	display: flex;
+	display: block;
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
 .site-navigation a {
 	display: block;
-	padding: 30px 20px;
+	padding: 20px;
+	border-bottom: 1px solid #ddd;
 	color: inherit;
+	font-size: 24px;
 	font-weight: bold;
 	text-decoration: none;
 	transition: background-color 0.2s;
@@ -47,10 +80,12 @@ header {
 .site-navigation a:hover,
 .site-navigation a:focus {
 	background-color: #eb4;
+	border-bottom-color: black;
 	box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.2);
 	text-shadow: 0px 1px 1px white;
 }
 
+/* Accordion */
 .accordion {
 	list-style: none;
 	margin: 0 auto 2em;
@@ -77,79 +112,6 @@ header {
 	display: block;
 }
 
-/* Media query adjustments for narrower screens -
-	I made the breakpoint wider than usual for demo purposes */
-@media (max-width: 899px) {
-
-	header {
-		position: relative; /* for anchoring .site-navigation */
-		padding: 0 0 0 10px;
-	}
-
-	/* Hamburger icon */
-	.hamburger {
-		display: block; /* show the icon on narrower screens */
-		flex: 0 0 64px; /* keep this exactly 64px wide */
-		margin-left: auto; /* keep it flush right */
-		width: 64px;
-		height: 64px;
-		border-radius: 0;
-		border: 0;
-		padding: 0;
-		background: black;
-		cursor: pointer;
-		transition: all 0.2s;
-	}
-	.hamburger rect {
-		fill: white; /* SVGs use "fill", not "background-color" */
-		transform-origin: center center; /* for line transforms later */
-		transition: all 0.2s;
-	}
-
-	/* Fancy icon toggle styling */
-	.hamburger:hover,
-	.hamburger.is-active {
-		background: #eb4;
-		box-shadow: 0 0 8px rgba(0, 0, 0, 0.3);
-	}
-	.is-active #line1 {
-		transform: rotate(-135deg) translate(-1px, 5px);
-		fill: black;
-	}
-	.is-active #line2 {
-		transform: rotate(-135deg) translate(-1px, -3px);
-		fill: black;
-	}
-	.is-active #line3 {
-		transform: rotate(135deg) translate(1px, -11px);
-		fill: black;
-	}
-
-	/* Navigation menu */
-	.site-navigation {
-		position: absolute;
-		top: 100%; /* with absolute position, anchor to bottom of header */
-		left: 0;
-		right: 0;
-		background-color: white;
-		border-top: 1px solid #ddd;
-		border-bottom: 1px solid #ddd;
-		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-	}
-	.site-navigation ul {
-		display: block; /* undo flexbox */
-	}
-	.site-navigation a {
-		padding: 20px;
-		border-bottom: 1px solid #ddd;
-		font-size: 24px;
-	}
-	.site-navigation a:hover,
-	.site-navigation a:focus {
-		border-bottom: 1px solid black;
-	}
-}
-
 /* Other unrelated stuff */
 * {
 	box-sizing: border-box;
@@ -166,12 +128,21 @@ h1 {
 	line-height: 1.2;
 }
 h2 {
+	display: inline-block;
 	margin: 1.5em 0 0;
+	padding: 0.5em 0.75em;
 	font-size: 1.1em;
+	background: black;
 	color: #eb4;
 }
 p {
 	padding-left: 1em;
+}
+code {
+	padding: 5px;
+	background: #ddd;
+	border-radius: 3px;
+	font-size: 0.875em;
 }
 main {
 	max-width: 1000px;

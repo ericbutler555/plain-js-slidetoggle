@@ -1,20 +1,20 @@
 /* plain JS slideToggle https://github.com/ericbutler555/plain-js-slidetoggle */
 
-function slideToggle(el, duration, callback) {
-  if (el.clientHeight === 0) {
-    _s(el, duration, callback, true);
+HTMLElement.prototype.slideToggle = function(duration, callback) {
+  if (this.clientHeight === 0) {
+    _s(this, duration, callback, true);
   } else {
-    _s(el, duration, callback);
+    _s(this, duration, callback);
   }
-}
+};
 
-function slideUp(el, duration, callback) {
-  _s(el, duration, callback);
-}
+HTMLElement.prototype.slideUp = function(duration, callback) {
+  _s(this, duration, callback);
+};
 
-function slideDown(el, duration, callback) {
-  _s(el, duration, callback, true);
-}
+HTMLElement.prototype.slideDown = function (duration, callback) {
+  _s(this, duration, callback, true);
+};
 
 function _s(el, duration, callback, isDown) {
 

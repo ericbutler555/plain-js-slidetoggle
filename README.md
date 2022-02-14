@@ -6,32 +6,27 @@ Check out [the demo page](https://ericbutler555.github.io/plain-js-slidetoggle/d
 
 ## How To Use
 
-    slideToggle(element, duration, callback);
+    element.slideToggle(duration, callback); // opens and closes an element
 
-    slideUp(element, duration, callback);
+    element.slideUp(duration, callback); // closes/collapses an element
 
-    slideDown(element, duration, callback);
+    element.slideDown(duration, callback); // opens/expands an element
 
 - element: *HTMLElement*. Required.
 - duration: *Number*. Optional. In milliseconds. Default 400.
-- callback: *Function*. Optional. Called once animation completes.
+- callback: *Function*. Optional. Called once slide animation completes.
 
 That's it.
 
 ## Example Usage
 
-    <button class="btn">Click me</button>
-    <div class="div-to-toggle">
-      ...content...
-    </div>
+    <button class="myBtn">Click me</button>
+    <div class="myDiv">blah blah blah</div>
 
     <script src="slideToggle.min.js"></script>
     <script>
-      // when you click the button, slide the div up and down:
-      const divToToggle = document.querySelector('.div-to-toggle');
-      document.querySelector('.btn').addEventListener('click', () => {
-        slideToggle(divToToggle, 500, () => {
-          console.log('This is the callback, the slide has finished!');
-        });
+      // when you click the button, open and close the div:
+      document.querySelector('.myBtn').addEventListener('click', () => {
+        document.querySelector('.myDiv').slideToggle();
       });
     </script>
